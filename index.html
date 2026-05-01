@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KTheme Converter - 카카오톡 iOS → Android 테마 변환기</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>KTheme Converter</h1>
+            <p class="subtitle">카카오톡 iOS 테마(.ktheme)를 Android 테마로 변환</p>
+        </header>
+
+        <main>
+            <!-- Step 1: 파일 업로드 -->
+            <section id="upload-section" class="card">
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <p>.ktheme 파일을 여기에 드래그하거나 클릭해서 선택하세요</p>
+                    </div>
+                    <input type="file" id="file-input" accept=".ktheme" hidden>
+                </div>
+            </section>
+
+            <!-- Step 2: 미리보기 -->
+            <section id="preview-section" class="card hidden">
+                <h2>테마 정보</h2>
+                <div class="theme-info">
+                    <div class="info-row">
+                        <span class="label">테마 이름</span>
+                        <span id="theme-name" class="value">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">제작자</span>
+                        <span id="theme-author" class="value">-</span>
+                    </div>
+                </div>
+
+                <h3>색상 미리보기</h3>
+                <div id="color-preview" class="color-preview"></div>
+
+                <h3>아이콘 미리보기</h3>
+                <div id="icon-preview" class="icon-preview"></div>
+
+                <button id="convert-btn" class="btn-primary">Android 테마로 변환</button>
+            </section>
+
+            <!-- Step 3: 변환 중 -->
+            <section id="progress-section" class="card hidden">
+                <h2>변환 중...</h2>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <p id="progress-text">준비 중...</p>
+            </section>
+
+            <!-- Step 4: 다운로드 -->
+            <section id="download-section" class="card hidden">
+                <h2>변환 완료!</h2>
+                <p>Android Studio 프로젝트가 생성되었습니다.</p>
+                <button id="download-btn" class="btn-primary">프로젝트 ZIP 다운로드</button>
+                <div class="guide">
+                    <h3>사용 방법</h3>
+                    <ol>
+                        <li>다운로드한 ZIP 파일의 압축을 풀어주세요</li>
+                        <li>Android Studio에서 <strong>File → Open</strong>으로 폴더를 열어주세요</li>
+                        <li>Gradle Sync가 완료될 때까지 기다려주세요</li>
+                        <li><strong>Build → Build Bundle(s) / APK(s) → Build APK(s)</strong>를 클릭하세요</li>
+                        <li>생성된 APK를 안드로이드 폰에 설치하세요</li>
+                        <li>카카오톡 → 더보기 → 설정 → 테마에서 적용하세요</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>이 도구는 브라우저에서 모든 처리가 이루어지며, 파일이 서버로 전송되지 않습니다.</p>
+        </footer>
+    </div>
+
+    <script src="lib/jszip.min.js"></script>
+    <script src="js/psd-reader.js"></script>
+    <script src="js/parser.js"></script>
+    <script src="js/converter.js"></script>
+    <script src="js/builder.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

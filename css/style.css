@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #86868b;
+    font-size: 16px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.card h3 {
+    font-size: 14px;
+    color: #86868b;
+    margin: 16px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Drop Zone */
+.drop-zone {
+    border: 2px dashed #d2d2d7;
+    border-radius: 12px;
+    padding: 48px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+    border-color: #007aff;
+    background: #f0f7ff;
+}
+
+.drop-zone-content svg {
+    color: #86868b;
+    margin-bottom: 12px;
+}
+
+.drop-zone-content p {
+    color: #86868b;
+    font-size: 15px;
+}
+
+/* Theme Info */
+.theme-info {
+    background: #f5f5f7;
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.info-row + .info-row {
+    border-top: 1px solid #e5e5e7;
+}
+
+.info-row .label {
+    color: #86868b;
+    font-size: 14px;
+}
+
+.info-row .value {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Color Preview */
+.color-preview {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.color-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.color-swatch .swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e7;
+}
+
+.color-swatch .swatch-label {
+    font-size: 10px;
+    color: #86868b;
+}
+
+/* Icon Preview */
+.icon-preview {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.icon-preview img {
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+    background: #f5f5f7;
+}
+
+/* Button */
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background: #007aff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #0062cc;
+}
+
+.btn-primary:disabled {
+    background: #d2d2d7;
+    cursor: not-allowed;
+}
+
+/* Progress */
+.progress-bar {
+    height: 6px;
+    background: #e5e5e7;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #007aff;
+    border-radius: 3px;
+    transition: width 0.3s;
+    width: 0%;
+}
+
+#progress-text {
+    font-size: 14px;
+    color: #86868b;
+    text-align: center;
+}
+
+/* Guide */
+.guide {
+    margin-top: 20px;
+    background: #f5f5f7;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.guide h3 {
+    margin-top: 0;
+    color: #1d1d1f;
+}
+
+.guide ol {
+    padding-left: 20px;
+}
+
+.guide li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #424245;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 32px;
+}
+
+footer p {
+    font-size: 12px;
+    color: #86868b;
+}
