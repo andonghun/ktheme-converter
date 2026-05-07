@@ -186,11 +186,80 @@
 
     downloadBtn.addEventListener('click', () => {
         if (!resultBlob) return;
+        document.getElementById('zip-guide').classList.remove('hidden');
         const url = URL.createObjectURL(resultBlob);
         const a = document.createElement('a');
         a.href = url;
         a.download = resultFilename;
         a.click();
         URL.revokeObjectURL(url);
+    });
+
+    // === APK 자동 빌드 ===
+
+    const buildApkBtn = document.getElementById('build-apk-btn');
+    const buildStatus = document.getElementById('build-status');
+    const buildStatusText = document.getElementById('build-status-text');
+    const apkDownload = document.getElementById('apk-download');
+
+    function setBuildStep(activeStepId) {
+        const steps = ['step-upload', 'step-queue', 'step-build', 'step-done'];
+        const activeIndex = steps.indexOf(activeStepId);
+        for (let i = 0; i < steps.length; i++) {
+            const el = document.getElementById(steps[i]);
+            if (i < activeIndex) {
+                el.classList.add('done');
+                el.classList.remove('active');
+            } else if (i === activeIndex) {
+                el.classList.add('active');
+                el.classList.remove('done');
+            } else {
+                el.classList.remove('done', 'active');
+            }
+        }
+    }
+
+    buildApkBtn.addEventListener('click', async () => {
+        if (!resultBlob) return;
+
+        buildApkBtn.disabled = true;
+        downloadBtn.disabled = true;
+        buildStatus.classList.remove('hidden');
+        apkDownload.classList.add('hidden');
+
+        try {
+            // 1. 서버에 전송
+            setBuildStep('step-upload');
+            buildStatusText.textContent = '서버에 프로젝트를 전송하고 있습니다...';
+            const { buildId } = await CloudBuild.submitBuild(resultBlob);
+
+            // 2. 상태 폴링
+            setBuildStep('step-queue');
+            buildStatusText.textContent = '빌드 대기 중... (보통 2~3분 소요)';
+
+            await CloudBuild.pollUntilComplete(buildId, (result) => {
+                if (result.status === 'queued') {
+                    setBuildStep('step-queue');
+                    buildStatusText.textContent = '빌드 대기 중... (보통 2~3분 소요)';
+                } else if (result.status === 'building' || result.status === 'in_progress') {
+                    setBuildStep('step-build');
+                    buildStatusText.textContent = 'APK를 빌드하고 있습니다...';
+                }
+            });
+
+            // 3. 완료
+            setBuildStep('step-done');
+            buildStatusText.textContent = 'APK 빌드가 완료되었습니다!';
+
+            const downloadLink = document.getElementById('apk-download-link');
+            downloadLink.href = CloudBuild.getDownloadUrl(buildId);
+            apkDownload.classList.remove('hidden');
+
+        } catch (e) {
+            buildStatusText.textContent = '오류: ' + e.message;
+            buildApkBtn.disabled = false;
+        }
+
+        downloadBtn.disabled = false;
     });
 })();

@@ -64,9 +64,48 @@
             <!-- Step 4: 다운로드 -->
             <section id="download-section" class="card hidden">
                 <h2>변환 완료!</h2>
-                <p>Android Studio 프로젝트가 생성되었습니다.</p>
-                <button id="download-btn" class="btn-primary">프로젝트 ZIP 다운로드</button>
-                <div class="guide">
+                <p>Android Studio 프로젝트가 생성되었습니다. 아래에서 원하는 방식을 선택하세요.</p>
+
+                <div class="download-options">
+                    <button id="build-apk-btn" class="btn-primary">APK 자동 빌드 (추천)</button>
+                    <button id="download-btn" class="btn-secondary">프로젝트 ZIP 다운로드</button>
+                </div>
+
+                <div id="build-status" class="build-status hidden">
+                    <div class="build-steps">
+                        <div class="build-step" id="step-upload">
+                            <span class="step-icon">&#9679;</span>
+                            <span class="step-label">서버에 전송 중...</span>
+                        </div>
+                        <div class="build-step" id="step-queue">
+                            <span class="step-icon">&#9679;</span>
+                            <span class="step-label">빌드 대기 중...</span>
+                        </div>
+                        <div class="build-step" id="step-build">
+                            <span class="step-icon">&#9679;</span>
+                            <span class="step-label">APK 빌드 중...</span>
+                        </div>
+                        <div class="build-step" id="step-done">
+                            <span class="step-icon">&#9679;</span>
+                            <span class="step-label">완료!</span>
+                        </div>
+                    </div>
+                    <p id="build-status-text" class="build-status-text">준비 중...</p>
+                </div>
+
+                <div id="apk-download" class="hidden">
+                    <a id="apk-download-link" class="btn-primary" style="display:block;text-align:center;text-decoration:none;">APK 다운로드</a>
+                    <div class="guide">
+                        <h3>설치 방법</h3>
+                        <ol>
+                            <li>다운로드된 ZIP 안의 APK 파일을 안드로이드 폰에 전송하세요</li>
+                            <li>APK를 설치하세요 (출처를 알 수 없는 앱 허용 필요)</li>
+                            <li>카카오톡 → 더보기 → 설정 → 테마에서 적용하세요</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div id="zip-guide" class="guide hidden">
                     <h3>사용 방법</h3>
                     <ol>
                         <li>다운로드한 ZIP 파일의 압축을 풀어주세요</li>
@@ -90,6 +129,7 @@
     <script src="js/parser.js"></script>
     <script src="js/converter.js"></script>
     <script src="js/builder.js"></script>
+    <script src="js/cloud-build.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
