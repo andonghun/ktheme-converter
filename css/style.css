@@ -230,6 +230,12 @@ header h1 {
     margin-top: 16px;
 }
 
+.build-notice {
+    font-size: 13px;
+    color: #86868b;
+    text-align: center;
+}
+
 .btn-secondary {
     display: block;
     width: 100%;
